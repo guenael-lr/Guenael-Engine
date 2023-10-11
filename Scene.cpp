@@ -112,8 +112,6 @@ void C_Scene::removeObject(int idObject) {
 int C_Scene::reSizeObjectFunc(int idObject, sf::Vector2i mouse_pos) {
 	if (idObject <= 0)
 		return -1;
-	std::cout << "Idobject " << idObject << " mousepos " << mouse_pos.x << " " << mouse_pos.y << std::endl;
-
 	for (int i = 0; i < size_list_obj; ++i)
 		if (list_objects[i].getID() == idObject) {
 			sf::Vector2f size = list_objects[i].getSize();
@@ -145,18 +143,27 @@ int C_Scene::reSizeObjectFunc(int idObject, sf::Vector2i mouse_pos) {
 
 int C_Scene::moveObject(int idObject, sf::Vector2i mouse_pos) {
 	if (idObject <= 0)
-		return 0;
+		return -1;
+	std::cout << "idObject = " << idObject << std::endl;
 	for (int i = 0; i < size_list_obj; ++i)
 		if (list_objects[i].getID() == idObject) {
-			list_objects[i].move(sf::Vector2f(mouse_pos));
-			if (!rect.getGlobalBounds().contains(list_objects[i].getPosition())
-				|| mouse_pos.x > rect.getGlobalBounds().width + rect.getPosition().x - list_objects[i].getSize().x
-				|| mouse_pos.y > rect.getGlobalBounds().height + rect.getPosition().y - list_objects[i].getSize().y
-				) {
-				list_objects[i].move(sf::Vector2f(lastMousePos));
+			if (rect.getGlobalBounds().contains(list_objects[i].getPosition()) && rect.getGlobalBounds().contains(list_objects[i].getPosition() + list_objects[i].getSize())) {
+				if (rect.getGlobalBounds().contains(sf::Vector2f(mouse_pos))
+					&& list_objects[i].getPosition().x < mouse_pos.x
+					&& list_objects[i].getPosition().y < mouse_pos.y
+					&& list_objects[i].getPosition().x + list_objects[i].getSize().x > mouse_pos.x
+					&& list_objects[i].getPosition().y + list_objects[i].getSize().y > mouse_pos.y
+					)
+
+				{
+					list_objects[i].move(sf::Vector2f(mouse_pos) - list_objects[i].getSize() / 2.f);
+					return 1;
+				}
 			}
 			else
-				lastMousePos = mouse_pos;
+				list_objects[i].move(rect.getPosition() + rect.getSize() / 2.f);
+
 		}
+	return -1;
 }
  

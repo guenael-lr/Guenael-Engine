@@ -51,16 +51,17 @@ void C_Window::update() {
 
 	//get the mouse position in the window
 	mouse_pos = sf::Mouse::getPosition(window);
+	(*Scene).FloatObject((*Project).getButton(), sf::Mouse::getPosition(window));
 
 	if (state_Button_Mouse.y == 1) {
 		(*Project).isHoverAButton(mouse_pos);
-
-		//(*Scene).reSizeObjectFunc(selection_Hierarchy, mouse_pos);
+		
 		if (-1 == (*Scene).reSizeObjectFunc(selection_Hierarchy, mouse_pos))
-			selection_Hierarchy = (*Hierarchy).hoverListElement(mouse_pos);
+			if (-1 == (*Scene).moveObject(selection_Hierarchy, mouse_pos))
+				selection_Hierarchy = (*Hierarchy).hoverListElement(mouse_pos);
 
 	}
-	(*Scene).FloatObject((*Project).getButton(), sf::Mouse::getPosition(window));
+	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 		quit();
 	}
