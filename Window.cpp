@@ -54,7 +54,7 @@ void C_Window::update() {
 
 	if (state_Button_Mouse.y == 1) {
 		(*Project).isHoverAButton(mouse_pos);
-		selection_Hierarchy = 1;
+
 		//(*Scene).reSizeObjectFunc(selection_Hierarchy, mouse_pos);
 		if (-1 == (*Scene).reSizeObjectFunc(selection_Hierarchy, mouse_pos))
 			selection_Hierarchy = (*Hierarchy).hoverListElement(mouse_pos);
