@@ -17,7 +17,9 @@ class C_Window {
 		C_Project* Project;
 		C_Hierarchy* Hierarchy;
 		C_Scene* Scene;
-
+		sf::Vector2i state_Button_Mouse;
+		sf::Vector2i prev_state_Button_Mouse;
+		sf::Vector2i mouse_pos;
 		int selection_Hierarchy;
 
 	public :

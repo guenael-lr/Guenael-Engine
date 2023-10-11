@@ -50,11 +50,9 @@ int C_Hierarchy::hoverListElement(sf::Vector2i mouse_pos) {
 	for (int i = 0; i < ButtonText.size(); ++i) {
 		if (ButtonText[i].getGlobalBounds().contains(sf::Vector2f(mouse_pos))) {
 			ButtonText[i].setFillColor(sf::Color::Red);
-			std::cout << i << "oui" << std::endl;
 			button = ButtonID[i];
 		}
 		else {
-			std::cout << i << std::endl;
 			ButtonText[i].setFillColor(sf::Color::White);
 		}
 	}

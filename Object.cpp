@@ -60,12 +60,13 @@ void C_Object::setTexture(std::string path) {
 }
 
 void C_Object::setSize(sf::Vector2f size) {
+	std::cout << "size mais avant : " << size.x << " " << size.y << std::endl;
 	if (type == 1) {
 		circle.setRadius(size.x/2.f);
 	}
 	else {
 		rect.setSize(size);
-		std::cout << rect.getSize().x << std::endl;
+		std::cout << "size = " << rect.getSize().x << std::endl;
 	}
 	this->size = size;
 }

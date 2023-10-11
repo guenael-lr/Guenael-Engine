@@ -6,8 +6,6 @@ C_Scene::C_Scene() {
 	rect.setFillColor(sf::Color(252,255,255,125));
 	rect.setPosition(sf::Vector2f(SCREEN_WIDTH / 4, 0));
 
-
-
 	if (!font.loadFromFile("Assets/Fonts/arial.ttf"))
 		std::cout <<  "pas youpi"  << std::endl;;
 
@@ -21,9 +19,14 @@ C_Scene::C_Scene() {
 	lastMousePos = sf::Vector2i(rect.getPosition().x + rect.getSize().x / 2, rect.getPosition().y + rect.getSize().y / 2);
 
 	reSizeObject.setFillColor(sf::Color::Transparent);
-	reSizeObject.setOutlineThickness(5.f);
-	reSizeObject.setOutlineColor(sf::Color::Green);
-	
+	reSizeObject.setOutlineThickness(2.5f);
+	reSizeObject.setOutlineColor(sf::Color(0,125,0,255));
+
+	for (int i = 0; i < 4; ++i) {
+		reSizeObject_corner[i].setFillColor(sf::Color::Green);
+		
+	}
+
 }
 
 void C_Scene::update(sf::RenderWindow& window) {
@@ -33,6 +36,8 @@ void C_Scene::update(sf::RenderWindow& window) {
 	window.draw(Title);
 	drawObjects(window);
 	window.draw(reSizeObject);
+	for (int i = 0; i < 4; ++i)
+		window.draw(reSizeObject_corner[i]);
 }
 
 void C_Scene::FloatObject(int Button, sf::Vector2i mouse_pos) {
@@ -74,6 +79,8 @@ void C_Scene::drawReSizeObject(int idObject) {
 	if (idObject <= 0) {
 		reSizeObject.setSize(sf::Vector2f(0.f, 0.f));
 		reSizeObject.setPosition( sf::Vector2f(0.f, 0.f));
+		for (int i = 0; i < 4; ++i)
+			reSizeObject_corner[i].setSize(sf::Vector2f(0.f, 0.f));
 		return;
 	}
 
@@ -81,6 +88,13 @@ void C_Scene::drawReSizeObject(int idObject) {
 		if (list_objects[i].getID() == idObject) {
 			reSizeObject.setSize(list_objects[i].getSize() + sf::Vector2f(10.f,10.f));
 			reSizeObject.setPosition(list_objects[i].getPosition() - sf::Vector2f(5.f, 5.f));
+			for (int i = 0; i < 4; ++i)
+				reSizeObject_corner[i].setSize(sf::Vector2f(15.f, 15.f));
+			reSizeObject_corner[0].setPosition(reSizeObject.getPosition() - reSizeObject_corner[0].getSize());
+			reSizeObject_corner[1].setPosition(reSizeObject.getPosition() + sf::Vector2f(reSizeObject.getSize().x, -reSizeObject_corner[0].getSize().y));
+			reSizeObject_corner[2].setPosition(reSizeObject.getPosition() + sf::Vector2f(-reSizeObject_corner[0].getSize().x, reSizeObject.getSize().y));
+			reSizeObject_corner[3].setPosition(reSizeObject.getPosition() + sf::Vector2f(reSizeObject.getSize().x, reSizeObject.getSize().y));
+
 
 		}
 }
@@ -94,4 +108,55 @@ void C_Scene::removeObject(int idObject) {
 		}
 }
 
+
+int C_Scene::reSizeObjectFunc(int idObject, sf::Vector2i mouse_pos) {
+	if (idObject <= 0)
+		return -1;
+	std::cout << "Idobject " << idObject << " mousepos " << mouse_pos.x << " " << mouse_pos.y << std::endl;
+
+	for (int i = 0; i < size_list_obj; ++i)
+		if (list_objects[i].getID() == idObject) {
+			sf::Vector2f size = list_objects[i].getSize();
+			sf::Vector2f pos = list_objects[i].getPosition();
+			if (reSizeObject_corner[0].getGlobalBounds().contains(sf::Vector2f(mouse_pos))) {
+				list_objects[i].setSize(sf::Vector2f(size.x - mouse_pos.x + pos.x -10.f, size.y - mouse_pos.y + pos.y -10.f));
+				list_objects[i].move(sf::Vector2f(mouse_pos + sf::Vector2i(10,10)));
+				return 0;
+			}
+			else if (reSizeObject_corner[1].getGlobalBounds().contains(sf::Vector2f(mouse_pos))) {
+				list_objects[i].setSize(sf::Vector2f(mouse_pos.x - pos.x - 10.f, size.y - mouse_pos.y + pos.y - 10.f));
+				list_objects[i].move(sf::Vector2f(pos.x, mouse_pos.y + 10.f));
+				return 1;
+			}
+			else if (reSizeObject_corner[2].getGlobalBounds().contains(sf::Vector2f(mouse_pos))) {
+				list_objects[i].setSize(sf::Vector2f(size.x - mouse_pos.x + pos.x - 10.f, mouse_pos.y - pos.y - 10.f));
+				list_objects[i].move(sf::Vector2f(mouse_pos.x + 10.f, pos.y));
+				return 2;
+			}
+			else if (reSizeObject_corner[3].getGlobalBounds().contains(sf::Vector2f(mouse_pos))) {
+				list_objects[i].setSize(sf::Vector2f(mouse_pos.x - pos.x - 10.f, mouse_pos.y - pos.y - 10.f));
+				return 3;
+			}
+			
+
+		}
+	return -1;
+}
+
+int C_Scene::moveObject(int idObject, sf::Vector2i mouse_pos) {
+	if (idObject <= 0)
+		return 0;
+	for (int i = 0; i < size_list_obj; ++i)
+		if (list_objects[i].getID() == idObject) {
+			list_objects[i].move(sf::Vector2f(mouse_pos));
+			if (!rect.getGlobalBounds().contains(list_objects[i].getPosition())
+				|| mouse_pos.x > rect.getGlobalBounds().width + rect.getPosition().x - list_objects[i].getSize().x
+				|| mouse_pos.y > rect.getGlobalBounds().height + rect.getPosition().y - list_objects[i].getSize().y
+				) {
+				list_objects[i].move(sf::Vector2f(lastMousePos));
+			}
+			else
+				lastMousePos = mouse_pos;
+		}
+}
  

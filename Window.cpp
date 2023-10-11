@@ -8,32 +8,36 @@ C_Window::C_Window() {
 
 	Scene = new C_Scene();
 	Inspector = new C_Inspector();
-	Project = new C_Project();
+	Project = new C_Project();    
 	Hierarchy = new C_Hierarchy();
 
 	selection_Hierarchy = -1;
+	state_Button_Mouse = sf::Vector2i(0.f,0.f);
+	prev_state_Button_Mouse = sf::Vector2i(0.f, 0.f);
+	mouse_pos = sf::Vector2i(0.f, 0.f);
+	mouse_pos = sf::Vector2i(0.f, 0.f);
 
 }
 
 void C_Window::update() {
 	window.clear();
 	sf::Event event;
+	prev_state_Button_Mouse = state_Button_Mouse;
 	while (window.pollEvent(event)) {
 		if (event.type == sf::Event::Closed) {
 			quit();
 		}
 		if (event.type == sf::Event::MouseButtonPressed)
 		{
-			if (event.mouseButton.button == sf::Mouse::Left) {
-				(*Project).isHoverAButton(sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
-				selection_Hierarchy = (*Hierarchy).hoverListElement(sf::Vector2i(sf::Mouse::getPosition(window)));
-				std::cout << "click" << std::endl;
-			}
-					
-					//Project.setIsPressed(true);
+			state_Button_Mouse.y = event.mouseButton.button == sf::Mouse::Left;
+			state_Button_Mouse.x = event.mouseButton.button == sf::Mouse::Right; 
 		}
-
-		//if button suppr is pressed delete the object
+		if (event.type == sf::Event::MouseButtonReleased)
+		{
+			if(event.mouseButton.button == sf::Mouse::Left)  state_Button_Mouse.y = 0 ;
+			if(event.mouseButton.button == sf::Mouse::Right) state_Button_Mouse.x = 0 ;
+		}
+					
 		if (event.type == sf::Event::KeyPressed) {
 			if (event.key.code == sf::Keyboard::Delete) {
 				(*Scene).removeObject(selection_Hierarchy);
@@ -41,7 +45,20 @@ void C_Window::update() {
 				selection_Hierarchy = -1;
 			}
 		}
-			
+
+		
+	}
+
+	//get the mouse position in the window
+	mouse_pos = sf::Mouse::getPosition(window);
+
+	if (state_Button_Mouse.y == 1) {
+		(*Project).isHoverAButton(mouse_pos);
+		selection_Hierarchy = 1;
+		//(*Scene).reSizeObjectFunc(selection_Hierarchy, mouse_pos);
+		if (-1 == (*Scene).reSizeObjectFunc(selection_Hierarchy, mouse_pos))
+			selection_Hierarchy = (*Hierarchy).hoverListElement(mouse_pos);
+
 	}
 	(*Scene).FloatObject((*Project).getButton(), sf::Mouse::getPosition(window));
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {

@@ -10,6 +10,7 @@ private:
 	sf::Text Title;
 	sf::Font font;
 	sf::RectangleShape reSizeObject;
+	sf::RectangleShape reSizeObject_corner[4];
 
 	std::vector<C_Object> list_objects;
 	int size_list_obj = 0;
@@ -26,4 +27,6 @@ public:
 	std::vector<C_Object> getListObjects() { return list_objects; }
 	void drawReSizeObject(int idObject);
 	void removeObject(int idObject);
+	int reSizeObjectFunc(int idObject, sf::Vector2i mouse_pos);
+	int moveObject(int idObject, sf::Vector2i mouse_pos);
 };
