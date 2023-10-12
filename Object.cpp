@@ -2,21 +2,13 @@
 
 void C_Object::move(sf::Vector2f pos) {
 	position = pos;
-	if (type == 1) {
-		circle.setPosition(pos);
-	}
-	else {
-		rect.setPosition(pos);
-	}
+	rect.setPosition(pos);
 }
 
 void C_Object::draw(sf::RenderWindow& window) {
-	if (type == 1) {
-		window.draw(circle);
-	}
-	else{
-		window.draw(rect);
-	}
+	if(type == 1)
+		rect.setTexture(&texture);
+	window.draw(rect);
 }
 
 void C_Object::setParent(C_Object* parent) {
@@ -42,14 +34,20 @@ void C_Object::setName(std::string name) {
 
 void C_Object::setType(int type) {
 	this->type = type;
-	if (type == 1) {
-		circle = sf::CircleShape();
-		circle.setFillColor(sf::Color::Red);
-	}
-	else {
-		rect = sf::RectangleShape(); 
-		rect.setFillColor(sf::Color::Blue);
-	}
+	rect = sf::RectangleShape(); 
+	//rect.setFillColor(sf::Color::Blue);
+	texture = sf::Texture();
+	
+	if (type == 1)
+		texture.loadFromFile("Assets/Images/cookie.png");
+	else if (type == 2)
+		texture.loadFromFile("Assets/Images/plateform.png");
+	else if (type == 3)
+		texture.loadFromFile("Assets/Images/player.png");
+	else
+		texture.loadFromFile("Assets/Images/finish.png");
+		
+	rect.setTexture(&texture);
 }
 
 void C_Object::setTexture(std::string path) {
@@ -60,14 +58,7 @@ void C_Object::setTexture(std::string path) {
 }
 
 void C_Object::setSize(sf::Vector2f size) {
-	std::cout << "size mais avant : " << size.x << " " << size.y << std::endl;
-	if (type == 1) {
-		circle.setRadius(size.x/2.f);
-	}
-	else {
-		rect.setSize(size);
-		std::cout << "size = " << rect.getSize().x << std::endl;
-	}
+	rect.setSize(size);
 	this->size = size;
 }
 
@@ -121,19 +112,12 @@ sf::Vector2f C_Object::getFriction() {
 	return friction;
 }
 
-sf::CircleShape C_Object::getCircle() {
-	return circle;
-}
-
 sf::RectangleShape C_Object::getRect() {
 	return rect;
 }
 
 void C_Object::setRotation(sf::Vector2f rotation) {
-	if(type == 1)
-		circle.setRotation(rotation.x);
-	else
-		rect.setRotation(rotation.x);
+	rect.setRotation(rotation.x);
 	this->rotation = rotation;
 }
 

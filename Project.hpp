@@ -5,13 +5,13 @@
 
 class C_Project {
 private:
-	const int List_Button_Size = 3;
+	const int List_Button_Size = 4;
 	sf::RectangleShape rect;
 	sf::Text Title;
-	sf::RectangleShape List_Button[3];
-	sf::Text List_Text[3];
+	std::vector<sf::RectangleShape> List_Button;
+	std::vector<sf::Text> List_Text;
 	sf::Font font;
-	const std::string List_Button_Text[3] = { "circle", "rectangle", "player" };
+	const std::string List_Button_Text[4] = { "collectible", "plateform", "player", "finish"};
 	int Button = 0;
 	
 
@@ -20,5 +20,5 @@ public:
 	C_Project();
 	void update(sf::RenderWindow& window);
 	int isHoverAButton(sf::Vector2i mouse_pos);
-	int getButton() { return Button; } 
+	int getButton() { return this->Button; } 
 };

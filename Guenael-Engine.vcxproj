@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Hierarchy.cpp" />
     <ClCompile Include="Inspector.cpp" />
     <ClCompile Include="main.cpp" />
@@ -144,6 +145,7 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game.hpp" />
     <ClInclude Include="Hierarchy.hpp" />
     <ClInclude Include="Inspector.hpp" />
     <ClInclude Include="Scene.hpp" />

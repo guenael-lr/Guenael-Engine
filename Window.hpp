@@ -7,16 +7,18 @@
 #include "Project.hpp"
 #include "Hierarchy.hpp"
 #include "Scene.hpp"
+#include "Game.hpp"
 
 class C_Window {
 
 	protected :
 		sf::RenderWindow window;
 		bool isRunning;	
-		C_Inspector* Inspector;
-		C_Project* Project;
-		C_Hierarchy* Hierarchy;
-		C_Scene* Scene;
+		C_Scene* Scene = new C_Scene;
+		C_Inspector* Inspector = new C_Inspector;
+		C_Project* Project = new C_Project;
+		C_Hierarchy* Hierarchy = new C_Hierarchy;
+		C_Game* Game = new C_Game;
 		sf::Vector2i state_Button_Mouse;
 		sf::Vector2i prev_state_Button_Mouse;
 		sf::Vector2i mouse_pos;

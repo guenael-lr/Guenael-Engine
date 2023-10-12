@@ -7,8 +7,13 @@ C_Project::C_Project() {
 	rect.setFillColor(sf::Color::Blue);
 	rect.setPosition(sf::Vector2f(SCREEN_WIDTH / 4, SCREEN_HEIGHT * 2 / 3));
 
+	for (int i = 0; i < List_Button_Size; ++i) {
+		List_Button.push_back(sf::RectangleShape());
+		List_Text.push_back(sf::Text());
+	}
+		
 
-	if (!font.loadFromFile("Assets/Fonts/arial.ttf"))
+	if (!font.loadFromFile("Assets/Fonts/arial2.ttf"))
 		exit(0);
 
 	Title.setFont(font);
@@ -20,10 +25,10 @@ C_Project::C_Project() {
 	//draw List_Button in the rect 
 	float offset = 20.f;
 
-	for (int i = 0; i < 3; ++i) {
+	for (int i = 0; i < List_Button_Size; ++i) {
 		List_Button[i].setSize(sf::Vector2f(SCREEN_WIDTH / 2 / 3 - offset, SCREEN_HEIGHT / 3 / 3 - offset));
 		List_Button[i].setFillColor(sf::Color::Magenta);
-		List_Button[i].setPosition(sf::Vector2f(rect.getPosition().x + offset * i + 10 + i * List_Button[i].getSize().x, rect.getPosition().y + 50 ));
+		List_Button[i].setPosition(sf::Vector2f(rect.getPosition().x + offset * (i%3) + 10 + (i%3) * List_Button[i].getSize().x, rect.getPosition().y + 50  + (List_Button[i].getSize().y + 50) * (i/3) ));
 		List_Button[i].setOutlineThickness(5.f);
 		List_Button[i].setOutlineColor(sf::Color::Black);
 		List_Text[i].setFont(font);
@@ -40,7 +45,7 @@ void C_Project::update(sf::RenderWindow& window) {
 	window.draw(rect);
 	window.draw(Title);
 	
-	for (int i = 0; i < 3; ++i) {
+	for (int i = 0; i < List_Button_Size; ++i) {
 		window.draw(List_Button[i]);
 		window.draw(List_Text[i]);
 	}
@@ -48,15 +53,15 @@ void C_Project::update(sf::RenderWindow& window) {
 
 
 int C_Project::isHoverAButton(sf::Vector2i mouse_pos) {
-	Button = 0;
-	for (int i = 0; i < 3; ++i) {
+	this->Button = 0;
+	for (int i = 0; i < List_Button_Size; ++i) {
 		if (List_Button[i].getGlobalBounds().contains(sf::Vector2f(mouse_pos))) {
 			List_Button[i].setOutlineColor(sf::Color::Red); //faire une var state ds button
-			Button = i + 1;
+			this->Button = i + 1;
 		}
 		else
 			List_Button[i].setOutlineColor(sf::Color::Black);
 			
 	}
-	return Button;
+	return this->Button;
 }

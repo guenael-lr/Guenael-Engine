@@ -8,7 +8,6 @@ private:
 	std::string name;
 	int type;
 	sf::RectangleShape rect;
-	sf::CircleShape circle;
 	sf::Texture texture;
 	sf::Sprite sprite;
 	sf::Vector2f size;
@@ -39,7 +38,6 @@ public:
 	int getID();
 	std::string getName();
 	int getType();
-	sf::CircleShape getCircle();
 	sf::RectangleShape getRect();
 	std::vector<C_Object> getChilds();
 	C_Object* getParent();

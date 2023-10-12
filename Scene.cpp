@@ -2,6 +2,12 @@
 
 
 C_Scene::C_Scene() {
+	list_objects.reserve(100);
+	size_list_obj = 0;
+	idObject = 0;
+	prev_button_state = 0;
+
+
 	rect.setSize(sf::Vector2f(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 2 / 3));
 	rect.setFillColor(sf::Color(252,255,255,125));
 	rect.setPosition(sf::Vector2f(SCREEN_WIDTH / 4, 0));
@@ -14,6 +20,13 @@ C_Scene::C_Scene() {
 	Title.setCharacterSize(24);
 	Title.setFillColor(sf::Color::Black);
 	Title.setPosition(sf::Vector2f(rect.getPosition().x + rect.getSize().x / 2 - Title.getGlobalBounds().width / 2, rect.getPosition().y + 10));
+
+	Play.setFont(font);
+	Play.setString("Play");
+	Play.setCharacterSize(24);
+	Play.setFillColor(sf::Color::Black);
+	Play.setPosition(sf::Vector2f(rect.getPosition().x + rect.getSize().x - Play.getGlobalBounds().width - 20.f, rect.getPosition().y + 10.f));
+
 
 	//place the lastMousePos in the middle of the rect
 	lastMousePos = sf::Vector2i(rect.getPosition().x + rect.getSize().x / 2, rect.getPosition().y + rect.getSize().y / 2);
@@ -34,6 +47,7 @@ void C_Scene::update(sf::RenderWindow& window) {
 
 	window.draw(rect);
 	window.draw(Title);
+	window.draw(Play);
 	drawObjects(window);
 	window.draw(reSizeObject);
 	for (int i = 0; i < 4; ++i)
@@ -42,34 +56,55 @@ void C_Scene::update(sf::RenderWindow& window) {
 
 void C_Scene::FloatObject(int Button, sf::Vector2i mouse_pos) {
 	
+	//std::cout << Button << std::endl;
 	if (!Button) {
 		prev_button_state = Button;
 		lastMousePos = sf::Vector2i(rect.getPosition().x + rect.getSize().x / 2, rect.getPosition().y + rect.getSize().y / 2);
 		return;
 	}
-	if (!prev_button_state) {
+
+	int player = 0;
+	if (Button == 3)
+		for (int i = 0; i < list_objects.size(); ++i)
+			if (list_objects[i].getType() == 3) {
+				list_objects[i].move(sf::Vector2f(mouse_pos));
+				if (!rect.getGlobalBounds().contains(list_objects[i].getPosition())
+					|| mouse_pos.x > rect.getGlobalBounds().width + rect.getPosition().x - list_objects[i].getSize().x
+					|| mouse_pos.y > rect.getGlobalBounds().height + rect.getPosition().y - list_objects[i].getSize().y
+					) {
+					list_objects[i].move(sf::Vector2f(lastMousePos));
+				}
+				else
+					lastMousePos = mouse_pos;
+				return;
+			}
+
+	if (!prev_button_state && !player) {
 		++size_list_obj;
 		++idObject;
+		std::cout << list_objects.size() << std::endl;
+		//C_Object test =C_Object();
 		list_objects.push_back(C_Object());
 		list_objects[size_list_obj - 1].setID(idObject);
 		list_objects[size_list_obj - 1].setName("Object " + std::to_string(idObject));
 		list_objects[size_list_obj - 1].setType(Button);
-		list_objects[size_list_obj - 1].setSize(sf::Vector2f(50.f, 50.f));
+	list_objects[size_list_obj - 1].setSize(sf::Vector2f(50.f, 50.f));
 		list_objects[size_list_obj - 1].setParent(nullptr);
 		list_objects[size_list_obj - 1].setGravity(10.f);
 		list_objects[size_list_obj - 1].setFriction(sf::Vector2f(0.5f,1.f));
 		list_objects[size_list_obj - 1].setVelocity(sf::Vector2f(0.f, 0.f));
 
 	}
-		list_objects[size_list_obj - 1].move(sf::Vector2f(mouse_pos));
-		if (!rect.getGlobalBounds().contains(list_objects[size_list_obj - 1].getPosition())
-			|| mouse_pos.x > rect.getGlobalBounds().width + rect.getPosition().x - list_objects[size_list_obj - 1].getSize().x
-			|| mouse_pos.y > rect.getGlobalBounds().height + rect.getPosition().y - list_objects[size_list_obj - 1].getSize().y
-			) {
-			list_objects[size_list_obj - 1].move(sf::Vector2f(lastMousePos));
-		}
-		else
-			lastMousePos = mouse_pos;
+
+	list_objects[size_list_obj - 1].move(sf::Vector2f(mouse_pos));
+	if (!rect.getGlobalBounds().contains(list_objects[size_list_obj - 1].getPosition())
+		|| mouse_pos.x > rect.getGlobalBounds().width + rect.getPosition().x - list_objects[size_list_obj - 1].getSize().x
+		|| mouse_pos.y > rect.getGlobalBounds().height + rect.getPosition().y - list_objects[size_list_obj - 1].getSize().y
+		) {
+		list_objects[size_list_obj - 1].move(sf::Vector2f(lastMousePos));
+	}
+	else
+		lastMousePos = mouse_pos;
 	
 	prev_button_state = Button;
 }
@@ -175,3 +210,8 @@ int C_Scene::moveObject(int idObject, sf::Vector2i mouse_pos) {
 	return -1;
 }
  
+bool C_Scene::buttonPlay(sf::Vector2i mouse_pos) {
+	if (Play.getGlobalBounds().contains(sf::Vector2f(mouse_pos))) 
+		return 1;
+	return 0;
+}

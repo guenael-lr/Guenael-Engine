@@ -8,11 +8,12 @@ class C_Scene {
 private:
 	sf::RectangleShape rect;
 	sf::Text Title;
+	sf::Text Play;
 	sf::Font font;
 	sf::RectangleShape reSizeObject;
 	sf::RectangleShape reSizeObject_corner[4];
 
-	std::vector<C_Object> list_objects;
+	
 	int size_list_obj = 0;
 
 	int prev_button_state = 0;
@@ -20,7 +21,9 @@ private:
 	int idObject = 0;
 
 public:
+	std::vector<C_Object> list_objects;
 	C_Scene();
+	bool buttonPlay(sf::Vector2i mouse_pos);
 	void FloatObject(int Button, sf::Vector2i mouse_pos);
 	void update(sf::RenderWindow& window);
 	void drawObjects(sf::RenderWindow& window);
