@@ -24,7 +24,7 @@ public:
 	void FloatObject(int Button, sf::Vector2i mouse_pos);
 	void update(sf::RenderWindow& window);
 	void drawObjects(sf::RenderWindow& window);
-	std::vector<C_Object> getListObjects() { return list_objects; }
+	std::vector<C_Object>* getListObjects() { return &list_objects; }
 	void drawReSizeObject(int idObject);
 	void removeObject(int idObject);
 	int reSizeObjectFunc(int idObject, sf::Vector2i mouse_pos);

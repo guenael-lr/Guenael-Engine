@@ -56,6 +56,10 @@ void C_Scene::FloatObject(int Button, sf::Vector2i mouse_pos) {
 		list_objects[size_list_obj - 1].setType(Button);
 		list_objects[size_list_obj - 1].setSize(sf::Vector2f(50.f, 50.f));
 		list_objects[size_list_obj - 1].setParent(nullptr);
+		list_objects[size_list_obj - 1].setGravity(10.f);
+		list_objects[size_list_obj - 1].setFriction(sf::Vector2f(0.5f,1.f));
+		list_objects[size_list_obj - 1].setVelocity(sf::Vector2f(0.f, 0.f));
+
 	}
 		list_objects[size_list_obj - 1].move(sf::Vector2f(mouse_pos));
 		if (!rect.getGlobalBounds().contains(list_objects[size_list_obj - 1].getPosition())
@@ -116,6 +120,12 @@ int C_Scene::reSizeObjectFunc(int idObject, sf::Vector2i mouse_pos) {
 		if (list_objects[i].getID() == idObject) {
 			sf::Vector2f size = list_objects[i].getSize();
 			sf::Vector2f pos = list_objects[i].getPosition();
+
+			//check if mouse is in the rect
+			if (!rect.getGlobalBounds().contains(sf::Vector2f(mouse_pos))
+				&& !rect.getGlobalBounds().contains(sf::Vector2f(mouse_pos.x + size.x, mouse_pos.y + size.y)))
+				return -1;
+
 			if (reSizeObject_corner[0].getGlobalBounds().contains(sf::Vector2f(mouse_pos))) {
 				list_objects[i].setSize(sf::Vector2f(size.x - mouse_pos.x + pos.x -10.f, size.y - mouse_pos.y + pos.y -10.f));
 				list_objects[i].move(sf::Vector2f(mouse_pos + sf::Vector2i(10,10)));
@@ -135,8 +145,6 @@ int C_Scene::reSizeObjectFunc(int idObject, sf::Vector2i mouse_pos) {
 				list_objects[i].setSize(sf::Vector2f(mouse_pos.x - pos.x - 10.f, mouse_pos.y - pos.y - 10.f));
 				return 3;
 			}
-			
-
 		}
 	return -1;
 }

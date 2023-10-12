@@ -40,6 +40,7 @@ void C_Window::update() {
 					
 		if (event.type == sf::Event::KeyPressed) {
 			if (event.key.code == sf::Keyboard::Delete) {
+				(*Inspector).Inspect((*(*Scene).getListObjects()), 0);
 				(*Scene).removeObject(selection_Hierarchy);
 				(*Hierarchy).removeListElement(selection_Hierarchy);
 				selection_Hierarchy = -1;
@@ -55,7 +56,7 @@ void C_Window::update() {
 
 	if (state_Button_Mouse.y == 1) {
 		(*Project).isHoverAButton(mouse_pos);
-		
+		(*Inspector).changeValueObject((*Scene).getListObjects(), selection_Hierarchy, (*Inspector).changeValue(mouse_pos));
 		if (-1 == (*Scene).reSizeObjectFunc(selection_Hierarchy, mouse_pos))
 			if (-1 == (*Scene).moveObject(selection_Hierarchy, mouse_pos))
 				selection_Hierarchy = (*Hierarchy).hoverListElement(mouse_pos);
@@ -65,8 +66,9 @@ void C_Window::update() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 		quit();
 	}
-
-	(*Hierarchy).listElement((*Scene).getListObjects());
+	if(selection_Hierarchy != -1)
+		(*Inspector).Inspect((*(*Scene).getListObjects()), selection_Hierarchy);
+	(*Hierarchy).listElement((*(*Scene).getListObjects()));
 	(*Scene).drawReSizeObject(selection_Hierarchy);
 	
 	(*Inspector).update(window);

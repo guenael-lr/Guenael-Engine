@@ -129,4 +129,25 @@ sf::RectangleShape C_Object::getRect() {
 	return rect;
 }
 
+void C_Object::setRotation(sf::Vector2f rotation) {
+	if(type == 1)
+		circle.setRotation(rotation.x);
+	else
+		rect.setRotation(rotation.x);
+	this->rotation = rotation;
+}
+
+sf::Vector2f C_Object::getRotation() {
+	return rotation;
+}
+
+void C_Object::setGravity(float gravity) {
+	this->gravity = gravity;
+}
+
+float C_Object::getGravity() {
+	return gravity;
+}
+
+
 

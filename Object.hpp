@@ -15,8 +15,11 @@ private:
 	std::vector<C_Object> childs;
 	C_Object* parent; //its position depends from its parent
 	sf::Vector2f position;
+	sf::Vector2f rotation;
 	sf::Vector2f velocity;
 	sf::Vector2f friction;
+	float gravity = 0;
+	
 
 public:
 	void move(sf::Vector2f pos);
@@ -30,6 +33,8 @@ public:
 	void setSize(sf::Vector2f size);
 	void setVelocity(sf::Vector2f velocity);
 	void setFriction(sf::Vector2f friction);
+	void setGravity(float gravity);
+	void setRotation(sf::Vector2f rotation);
 	void setID(int id);
 	int getID();
 	std::string getName();
@@ -42,4 +47,6 @@ public:
 	sf::Vector2f getVelocity();
 	sf::Vector2f getFriction();
 	sf::Vector2f getSize();
+	sf::Vector2f getRotation();
+	float getGravity();
 };
