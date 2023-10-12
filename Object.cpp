@@ -6,8 +6,7 @@ void C_Object::move(sf::Vector2f pos) {
 }
 
 void C_Object::draw(sf::RenderWindow& window) {
-	if(type == 1)
-		rect.setTexture(&texture);
+	rect.setTexture(&texture);
 	window.draw(rect);
 }
 
