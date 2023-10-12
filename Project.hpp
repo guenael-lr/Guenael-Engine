@@ -11,7 +11,7 @@ private:
 	std::vector<sf::RectangleShape> List_Button;
 	std::vector<sf::Text> List_Text;
 	sf::Font font;
-	const std::string List_Button_Text[4] = { "collectible", "plateform", "player", "finish"};
+	const std::string List_Button_Text[4] = { "collectible", "platform", "player", "finish"};
 	int Button = 0;
 	
 
