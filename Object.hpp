@@ -22,6 +22,7 @@ private:
 
 public:
 	void move(sf::Vector2f pos);
+	void translate(sf::Vector2f plus);
 	void draw(sf::RenderWindow& window);
 	void setParent(C_Object* parent); //children list of the parent is incremented from here
 	void addChild(C_Object* child); //add a child to the list of children

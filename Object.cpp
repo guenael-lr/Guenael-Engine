@@ -36,13 +36,15 @@ void C_Object::setType(int type) {
 	rect = sf::RectangleShape(); 
 	//rect.setFillColor(sf::Color::Blue);
 	texture = sf::Texture();
-	
+	this->setGravity(0.f);
 	if (type == 1)
 		texture.loadFromFile("Assets/Images/cookie.png");
 	else if (type == 2)
 		texture.loadFromFile("Assets/Images/plateform.png");
-	else if (type == 3)
+	else if (type == 3) {
 		texture.loadFromFile("Assets/Images/player.png");
+		this->setGravity(1.f);
+	}
 	else
 		texture.loadFromFile("Assets/Images/finish.png");
 		
@@ -132,5 +134,9 @@ float C_Object::getGravity() {
 	return gravity;
 }
 
+void C_Object::translate(sf::Vector2f plus) {
+	 this->position += plus;
+	rect.setPosition(this->position);
+}
 
 

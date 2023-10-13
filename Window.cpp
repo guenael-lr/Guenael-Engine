@@ -18,6 +18,8 @@ void C_Window::update() {
 	window.clear();
 	sf::Event event;
 	prev_state_Button_Mouse = state_Button_Mouse;
+	//state_Button_Mouse.y = 0;
+	//state_Button_Mouse.x = 0;
 	while (window.pollEvent(event)) {
 		if (event.type == sf::Event::Closed) {
 			quit();
@@ -47,8 +49,11 @@ void C_Window::update() {
 	(*Scene).FloatObject((*Project).getButton(), sf::Mouse::getPosition(window));
 
 	if (state_Button_Mouse.y == 1) {
-		if ((*Scene).buttonPlay(mouse_pos)) 
-			(*Game).setRunning();
+		if ((*Scene).buttonPlay(mouse_pos)) {
+			state_Button_Mouse.y = 0;	
+			state_Button_Mouse.x = 0;
+			(*Game).setRunning((*Scene).getListObjects());
+		}
 		
 		(*Project).isHoverAButton(mouse_pos);
 		(*Inspector).changeValueObject((*Scene).getListObjects(), selection_Hierarchy, (*Inspector).changeValue(mouse_pos));
@@ -67,7 +72,7 @@ void C_Window::update() {
 		(*Inspector).Inspect((*(*Scene).getListObjects()), selection_Hierarchy);
 	(*Hierarchy).listElement((*(*Scene).getListObjects()));
 	(*Scene).drawReSizeObject(selection_Hierarchy);
-	(*Game).run((*Scene).getListObjects());
+	(*Game).run();
 	(*Scene).update(window);
 	(*Inspector).update(window);
 	(*Project).update(window);

@@ -56,7 +56,6 @@ void C_Scene::update(sf::RenderWindow& window) {
 
 void C_Scene::FloatObject(int Button, sf::Vector2i mouse_pos) {
 	
-	//std::cout << Button << std::endl;
 	if (!Button) {
 		prev_button_state = Button;
 		lastMousePos = sf::Vector2i(rect.getPosition().x + rect.getSize().x / 2, rect.getPosition().y + rect.getSize().y / 2);
@@ -82,16 +81,13 @@ void C_Scene::FloatObject(int Button, sf::Vector2i mouse_pos) {
 	if (!prev_button_state && !player) {
 		++size_list_obj;
 		++idObject;
-		std::cout << list_objects.size() << std::endl;
-		//C_Object test =C_Object();
 		list_objects.push_back(C_Object());
 		list_objects[size_list_obj - 1].setID(idObject);
-		list_objects[size_list_obj - 1].setName("Object " + std::to_string(idObject));
+		list_objects[size_list_obj - 1].setName(types_name[Button-1] + std::to_string(idObject));
 		list_objects[size_list_obj - 1].setType(Button);
-	list_objects[size_list_obj - 1].setSize(sf::Vector2f(50.f, 50.f));
+		list_objects[size_list_obj - 1].setSize(sf::Vector2f(50.f, 50.f));
 		list_objects[size_list_obj - 1].setParent(nullptr);
-		list_objects[size_list_obj - 1].setGravity(10.f);
-		list_objects[size_list_obj - 1].setFriction(sf::Vector2f(0.5f,1.f));
+		list_objects[size_list_obj - 1].setFriction(sf::Vector2f(0.9f,1.f));
 		list_objects[size_list_obj - 1].setVelocity(sf::Vector2f(0.f, 0.f));
 
 	}
@@ -187,7 +183,6 @@ int C_Scene::reSizeObjectFunc(int idObject, sf::Vector2i mouse_pos) {
 int C_Scene::moveObject(int idObject, sf::Vector2i mouse_pos) {
 	if (idObject <= 0)
 		return -1;
-	std::cout << "idObject = " << idObject << std::endl;
 	for (int i = 0; i < size_list_obj; ++i)
 		if (list_objects[i].getID() == idObject) {
 			if (rect.getGlobalBounds().contains(list_objects[i].getPosition()) && rect.getGlobalBounds().contains(list_objects[i].getPosition() + list_objects[i].getSize())) {

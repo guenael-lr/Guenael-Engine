@@ -8,10 +8,26 @@ class C_Game {
 	private:
 		sf::RenderWindow gameWindow;
 		bool isRunning;
+		C_Object player;
+		std::vector<C_Object> list_platform;
+		std::vector<C_Object> list_collection;
+		std::vector<C_Object> list_flags;
+
+		bool player_isJumping = false;
+		bool player_isOnGround = false;
+
+		int collectibles = 0;
+		int totalCollectibles = 0;
+
+		sf::Text textCollectibles;
+		sf::Font font;
 		
 	public:
 		C_Game();
 		bool getIsRunning();
-		void setRunning();
-		void run(std::vector<C_Object> *list_objects);
+		void setRunning(std::vector<C_Object>* list_objects);
+		void getObjects(std::vector<C_Object> *list_objects);
+		void run();
+		void applyPhysics();
+		void checkCollision();
 };

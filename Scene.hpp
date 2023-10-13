@@ -13,7 +13,8 @@ private:
 	sf::RectangleShape reSizeObject;
 	sf::RectangleShape reSizeObject_corner[4];
 
-	
+	const std::string types_name[4] = { "collectible", "platform", "player", "finish" };
+
 	int size_list_obj = 0;
 
 	int prev_button_state = 0;
