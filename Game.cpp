@@ -41,6 +41,7 @@ void C_Game::run() {
 	while (gameWindow.pollEvent(event)) {
 		if (event.type == sf::Event::Closed) {
 			isRunning = false;
+			this->restart();
 			gameWindow.close();
 		}
 
@@ -128,8 +129,10 @@ void C_Game::checkCollision() {
 	}
 	for (int i = 0; i < list_flags.size(); i++) {
 		if (player.getRect().getGlobalBounds().intersects(list_flags[i].getRect().getGlobalBounds())) {
-			if(collectibles == totalCollectibles)
+			if (collectibles == totalCollectibles) {
+				this->restart();
 				gameWindow.close();
+			}
 		}
 	}
 }
@@ -150,8 +153,22 @@ void C_Game::applyPhysics() {
 		list_flags[i].translate(list_flags[i].getVelocity());
 	}
 	player.translate(player.getVelocity());
+
+	if (player.getPosition().y > 3000) {
+		this->restart();
+		gameWindow.close();
+	}
 	//tout changer
 	//player->getVelocity().x *= player->getFriction().x;
 	//player->getVelocity().y *= player->getFriction().y;
 	//player->move(player->getVelocity()); //change to translate
+}
+
+
+void C_Game::restart() {
+	//restart the game 
+	isRunning = false;
+	collectibles = 0;
+	player_isJumping = false;
+	player_isOnGround = false;
 }

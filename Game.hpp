@@ -30,4 +30,5 @@ class C_Game {
 		void run();
 		void applyPhysics();
 		void checkCollision();
+		void restart();
 };
