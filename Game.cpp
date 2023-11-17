@@ -54,6 +54,8 @@ void C_Game::run() {
 			player_isOnGround = false;
 			player.setVelocity(sf::Vector2f(player.getVelocity().x, -15.0f));
 		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+		player.setVelocity(sf::Vector2f(player.getVelocity().x * 2, player.getVelocity().y));
 	}
 	gameWindow.clear(sf::Color(135, 206, 250));
 	this->applyPhysics();

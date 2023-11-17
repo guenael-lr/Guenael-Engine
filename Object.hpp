@@ -6,6 +6,7 @@ class C_Object {
 private:
 	int id;
 	std::string name;
+	std::string pathTexture;
 	int type;
 	sf::RectangleShape rect;
 	sf::Texture texture;
@@ -18,7 +19,6 @@ private:
 	sf::Vector2f velocity;
 	sf::Vector2f friction;
 	float gravity = 0;
-	
 
 public:
 	void move(sf::Vector2f pos);
@@ -38,6 +38,7 @@ public:
 	void setID(int id);
 	int getID();
 	std::string getName();
+	std::string getPathTexture();
 	int getType();
 	sf::RectangleShape getRect();
 	std::vector<C_Object> getChilds();
@@ -48,4 +49,5 @@ public:
 	sf::Vector2f getSize();
 	sf::Vector2f getRotation();
 	float getGravity();
+	
 };

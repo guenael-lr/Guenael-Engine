@@ -35,27 +35,17 @@ void C_Object::setType(int type) {
 	this->type = type;
 	rect = sf::RectangleShape(); 
 	//rect.setFillColor(sf::Color::Blue);
-	texture = sf::Texture();
+	this->setTexture("Assets/Images/default.png");
 	this->setGravity(0.f);
-	if (type == 1)
-		texture.loadFromFile("Assets/Images/cookie.png");
-	else if (type == 2)
-		texture.loadFromFile("Assets/Images/plateform.png");
-	else if (type == 3) {
-		texture.loadFromFile("Assets/Images/player.png");
+	if (type == 3) 
 		this->setGravity(1.f);
-	}
-	else
-		texture.loadFromFile("Assets/Images/finish.png");
-		
-	rect.setTexture(&texture);
 }
 
 void C_Object::setTexture(std::string path) {
+	pathTexture = path;
 	texture = sf::Texture();
 	texture.loadFromFile(path);
-	sprite = sf::Sprite();
-	sprite.setTexture(texture);
+	rect.setTexture(&texture);
 }
 
 void C_Object::setSize(sf::Vector2f size) {
@@ -139,4 +129,7 @@ void C_Object::translate(sf::Vector2f plus) {
 	rect.setPosition(this->position);
 }
 
+std::string C_Object::getPathTexture() {
+	return pathTexture;
+}
 

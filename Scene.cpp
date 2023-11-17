@@ -87,7 +87,7 @@ void C_Scene::FloatObject(int Button, sf::Vector2i mouse_pos) {
 		list_objects[size_list_obj - 1].setType(Button);
 		list_objects[size_list_obj - 1].setSize(sf::Vector2f(50.f, 50.f));
 		list_objects[size_list_obj - 1].setParent(nullptr);
-		list_objects[size_list_obj - 1].setFriction(sf::Vector2f(0.9f,1.f));
+		list_objects[size_list_obj - 1].setFriction(sf::Vector2f(0.8f,1.f));
 		list_objects[size_list_obj - 1].setVelocity(sf::Vector2f(0.f, 0.f));
 
 	}
@@ -129,8 +129,6 @@ void C_Scene::drawReSizeObject(int idObject) {
 			reSizeObject_corner[1].setPosition(reSizeObject.getPosition() + sf::Vector2f(reSizeObject.getSize().x, -reSizeObject_corner[0].getSize().y));
 			reSizeObject_corner[2].setPosition(reSizeObject.getPosition() + sf::Vector2f(-reSizeObject_corner[0].getSize().x, reSizeObject.getSize().y));
 			reSizeObject_corner[3].setPosition(reSizeObject.getPosition() + sf::Vector2f(reSizeObject.getSize().x, reSizeObject.getSize().y));
-
-
 		}
 }
 

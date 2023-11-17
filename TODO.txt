@@ -1,0 +1,55 @@
+pouvoir choisir les textures
+pouvoir choisir l'audio lié ig
+pouvoir choisir des boutons pour le menu 
+faire l'ecran de fin 
+faire les enfants
+faire les animations 
+faire les sons
+
+- **Audio (0-20 points)**
+
+  - 0-5 points: Pas assez - Aucune tentative ou implémentation incorrecte de l'audio.
+
+  - 6-10 points: Suffisant - Audio basique mais fonctionnel.
+
+  - 11-15 points: Bon - Bonne qualité audio et intégration dans le jeu.
+
+  - 16-20 points: Excellent - Audio parfaitement implémenté avec des fonctionnalités avancées comme des effets sonores contextuels.
+
+---
+
+
+
+### Projet 2: Plateforme 2D simple (Unity ou moteur de jeu créé dans le projet 1)
+
+
+
+#### Critères d'évaluation:
+
+
+
+- **Personnage (0-20 points)**
+
+  - 0-5 points: Pas assez - Personnage basique sans animations ou fonctionnalités.
+
+  - 6-10 points: Suffisant - Personnage avec animations de base (marche, arrêt).
+
+  - 11-15 points: Bon - Personnage avec plusieurs animations et interactions possibles.
+
+  - 16-20 points: Excellent - Personnage parfaitement réalisé avec des animations fluides et des interactions complexes.
+
+
+- **Carte (0-20 points)**
+
+  - 0-5 points: Pas assez - Carte très basique sans obstacles ou éléments interactifs.
+
+  - 6-10 points: Suffisant - Carte avec quelques obstacles et éléments interactifs.
+
+  - 11-15 points: Bon - Carte bien conçue avec divers obstacles et niveaux.
+
+  - 16-20 points: Excellent - Carte parfaitement réalisée avec une grande variété d'éléments interactifs et de défis.
+
+
+
+---
+

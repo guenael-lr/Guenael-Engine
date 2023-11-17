@@ -110,6 +110,11 @@ void C_Inspector::Inspect(std::vector<C_Object> list_object, int id) {
 	List_Value.push_back(sf::Text());
 	setText(List_Value[11], font, precision2(std::to_string(obj->getGravity())), 24, sf::Color::White, sf::Vector2f(List_Text[7].getPosition().x + List_Text[7].getGlobalBounds().width, List_Text[7].getPosition().y));
 
+	List_Text.push_back(sf::Text());
+	setText(List_Text[8], font, "Texture Path : ", 24, sf::Color::White, sf::Vector2f(rect.getPosition().x + 10, List_Text[7].getPosition().y + 30));
+	
+	List_Value.push_back(sf::Text());
+	setText(List_Value[12], font, obj->getPathTexture(), 24, sf::Color::White, sf::Vector2f(List_Text[8].getPosition().x + List_Text[8].getGlobalBounds().width, List_Text[8].getPosition().y));
 }
 
 void setText(sf::Text& text, sf::Font& font, std::string str, int size, sf::Color color, sf::Vector2f pos) {
@@ -248,6 +253,9 @@ void C_Inspector::changeValueObject(std::vector<C_Object> *list_object, int id, 
 				break;
 			case 11:
 				(*list_object)[i].setGravity(atof(what.c_str()));
+				break;
+			case 12:
+				(*list_object)[i].setTexture(what);
 				break;
 
 			}
