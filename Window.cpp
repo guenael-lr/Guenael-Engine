@@ -54,6 +54,12 @@ void C_Window::update() {
 			state_Button_Mouse.x = 0;
 			(*Game).setRunning((*Scene).getListObjects());
 		}
+
+		if ((*Scene).buttonExample(mouse_pos)) {
+			state_Button_Mouse.y = 0;
+			state_Button_Mouse.x = 0;
+			(*GameExample).initExample();
+		}
 		
 		(*Project).isHoverAButton(mouse_pos);
 		(*Inspector).changeValueObject((*Scene).getListObjects(), selection_Hierarchy, (*Inspector).changeValue(mouse_pos));
@@ -73,6 +79,7 @@ void C_Window::update() {
 	(*Hierarchy).listElement((*(*Scene).getListObjects()));
 	(*Scene).drawReSizeObject(selection_Hierarchy);
 	(*Game).run();
+	(*GameExample).run();
 	(*Scene).update(window);
 	(*Inspector).update(window);
 	(*Project).update(window);

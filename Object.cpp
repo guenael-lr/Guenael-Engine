@@ -16,8 +16,6 @@ void C_Object::setName(std::string name) {
 
 void C_Object::setType(int type) {
 	this->type = type;
-	rect = sf::RectangleShape(); 
-	//rect.setFillColor(sf::Color::Blue);
 	this->setTexture("Assets/Images/default.png");
 	this->setGravity(0.f);
 	this->pathSoundAction = "None";
@@ -34,7 +32,7 @@ void C_Object::setTexture(std::string path) {
 	pathTexture = path;
 	texture = sf::Texture();
 	texture.loadFromFile(path);
-	rect.setTexture(&texture);
+	rect.setTexture(&texture, true);
 }
 
 void C_Object::setSize(sf::Vector2f size) {

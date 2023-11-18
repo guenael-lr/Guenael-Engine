@@ -10,6 +10,7 @@ private:
 	sf::RectangleShape rect;
 	sf::Text Title;
 	sf::Text Play;
+	sf::Text ExampleLevel;
 	sf::Font font;
 	sf::RectangleShape reSizeObject;
 	sf::RectangleShape reSizeObject_corner[4];
@@ -28,6 +29,7 @@ public:
 	std::vector<C_Object> list_objects;
 	C_Scene();
 	bool buttonPlay(sf::Vector2i mouse_pos);
+	bool buttonExample(sf::Vector2i mouse_pos);
 	void FloatObject(int Button, sf::Vector2i mouse_pos);
 	void update(sf::RenderWindow& window);
 	void drawObjects(sf::RenderWindow& window);

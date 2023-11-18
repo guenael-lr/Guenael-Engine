@@ -27,6 +27,13 @@ C_Scene::C_Scene() {
 	Play.setFillColor(sf::Color::Black);
 	Play.setPosition(sf::Vector2f(rect.getPosition().x + rect.getSize().x - Play.getGlobalBounds().width - 20.f, rect.getPosition().y + 10.f));
 
+	ExampleLevel.setFont(font);
+	ExampleLevel.setString("Example of Level");
+	ExampleLevel.setCharacterSize(24);
+	ExampleLevel.setFillColor(sf::Color::Black);
+	ExampleLevel.setPosition(sf::Vector2f(rect.getPosition().x + rect.getSize().x / 2 - ExampleLevel.getGlobalBounds().width / 2, rect.getPosition().y + rect.getSize().y - ExampleLevel.getGlobalBounds().height - 10.f));
+
+
 
 	//place the lastMousePos in the middle of the rect
 	lastMousePos = sf::Vector2i(rect.getPosition().x + rect.getSize().x / 2, rect.getPosition().y + rect.getSize().y / 2);
@@ -48,6 +55,7 @@ void C_Scene::update(sf::RenderWindow& window) {
 	window.draw(rect);
 	window.draw(Title);
 	window.draw(Play);
+	window.draw(ExampleLevel);
 	drawObjects(window);
 	window.draw(reSizeObject);
 	for (int i = 0; i < 4; ++i)
@@ -204,6 +212,12 @@ int C_Scene::moveObject(int idObject, sf::Vector2i mouse_pos) {
  
 bool C_Scene::buttonPlay(sf::Vector2i mouse_pos) {
 	if (Play.getGlobalBounds().contains(sf::Vector2f(mouse_pos))) 
+		return 1;
+	return 0;
+}
+
+bool C_Scene::buttonExample(sf::Vector2i mouse_pos) {
+	if (ExampleLevel.getGlobalBounds().contains(sf::Vector2f(mouse_pos)))
 		return 1;
 	return 0;
 }
