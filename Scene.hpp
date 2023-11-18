@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "utils.hpp"
 #include "Object.hpp"
 
@@ -20,6 +21,8 @@ private:
 	int prev_button_state = 0;
 	sf::Vector2i lastMousePos;
 	int idObject = 0;
+
+	sf::SoundBuffer buffer;
 
 public:
 	std::vector<C_Object> list_objects;

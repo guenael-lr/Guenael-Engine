@@ -10,23 +10,6 @@ void C_Object::draw(sf::RenderWindow& window) {
 	window.draw(rect);
 }
 
-void C_Object::setParent(C_Object* parent) {
-	this->parent = parent;
-}
-
-void C_Object::addChild(C_Object* child) {
-	childs.push_back(*child);
-}
-
-void C_Object::removeChild(C_Object* child) {
-	for (int i = 0; i < childs.size(); ++i) {
-		if (childs[i].getName() == child->getName()) {
-			childs.erase(childs.begin() + i);
-			return;
-		}
-	}
-}
-
 void C_Object::setName(std::string name) {
 	this->name = name;
 }
@@ -37,8 +20,14 @@ void C_Object::setType(int type) {
 	//rect.setFillColor(sf::Color::Blue);
 	this->setTexture("Assets/Images/default.png");
 	this->setGravity(0.f);
-	if (type == 3) 
+	this->pathSoundAction = "None";
+	this->pathSoundJump = "None";
+	if (type == 3) {
 		this->setGravity(1.f);
+		this->pathSoundAction = "Not used";
+	}
+	else
+		this->pathSoundJump = "Not used";
 }
 
 void C_Object::setTexture(std::string path) {
@@ -78,20 +67,11 @@ int C_Object::getType() {
 	return type;
 }
 
-std::vector<C_Object> C_Object::getChilds() {
-	return childs;
-}
-
-C_Object* C_Object::getParent() {
-	return parent;
-}
-
 sf::Vector2f C_Object::getPosition() {
 	return position;
 }
 
 sf::Vector2f C_Object::getSize() {
-
 	return size;
 }
 
@@ -133,3 +113,30 @@ std::string C_Object::getPathTexture() {
 	return pathTexture;
 }
 
+void C_Object::setJumpSound(std::string path) {
+	pathSoundJump = path;
+	bufferJump.loadFromFile(path);
+	jumpSound.setBuffer(bufferJump);
+}
+
+void C_Object::setActionSound(std::string path) {
+	pathSoundAction = path;
+	bufferAction.loadFromFile(path);
+	actionSound.setBuffer(bufferAction);
+}
+
+std::string C_Object::getJumpSoundPath() {
+	return pathSoundJump;
+}
+
+std::string C_Object::getActionSoundPath() {
+	return pathSoundAction;
+}
+
+void C_Object::playJumpSound() {
+	jumpSound.play();
+}
+
+void C_Object::playActionSound() {
+	actionSound.play();
+}

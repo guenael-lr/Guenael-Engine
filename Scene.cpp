@@ -86,7 +86,6 @@ void C_Scene::FloatObject(int Button, sf::Vector2i mouse_pos) {
 		list_objects[size_list_obj - 1].setName(types_name[Button-1] + std::to_string(idObject));
 		list_objects[size_list_obj - 1].setType(Button);
 		list_objects[size_list_obj - 1].setSize(sf::Vector2f(50.f, 50.f));
-		list_objects[size_list_obj - 1].setParent(nullptr);
 		list_objects[size_list_obj - 1].setFriction(sf::Vector2f(0.8f,1.f));
 		list_objects[size_list_obj - 1].setVelocity(sf::Vector2f(0.f, 0.f));
 

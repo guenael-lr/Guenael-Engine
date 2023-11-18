@@ -115,6 +115,18 @@ void C_Inspector::Inspect(std::vector<C_Object> list_object, int id) {
 	
 	List_Value.push_back(sf::Text());
 	setText(List_Value[12], font, obj->getPathTexture(), 24, sf::Color::White, sf::Vector2f(List_Text[8].getPosition().x + List_Text[8].getGlobalBounds().width, List_Text[8].getPosition().y));
+
+	List_Text.push_back(sf::Text());
+	setText(List_Text[9], font, "Sound Jump Path : ", 24, sf::Color::White, sf::Vector2f(rect.getPosition().x + 10, List_Text[8].getPosition().y + 30));
+
+	List_Value.push_back(sf::Text());
+	setText(List_Value[13], font, obj->getJumpSoundPath(), 24, sf::Color::White, sf::Vector2f(rect.getPosition().x + 10, List_Text[9].getPosition().y + 30));
+
+	List_Text.push_back(sf::Text());
+	setText(List_Text[10], font, "Sound Action Path : ", 24, sf::Color::White, sf::Vector2f(rect.getPosition().x + 10, List_Value[13].getPosition().y + 30));
+
+	List_Value.push_back(sf::Text());
+	setText(List_Value[14], font, obj->getActionSoundPath(), 24, sf::Color::White, sf::Vector2f(rect.getPosition().x + 10, List_Text[10].getPosition().y + 30));
 }
 
 void setText(sf::Text& text, sf::Font& font, std::string str, int size, sf::Color color, sf::Vector2f pos) {
@@ -257,7 +269,12 @@ void C_Inspector::changeValueObject(std::vector<C_Object> *list_object, int id, 
 			case 12:
 				(*list_object)[i].setTexture(what);
 				break;
-
+			case 13:
+				(*list_object)[i].setJumpSound(what);
+				break;
+			case 14:
+				(*list_object)[i].setActionSound(what);
+				break;
 			}
 		}
 			

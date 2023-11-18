@@ -1,32 +1,11 @@
-pouvoir choisir les textures
-pouvoir choisir l'audio lié ig
-pouvoir choisir des boutons pour le menu 
-faire l'ecran de fin 
-faire les enfants
+
 faire les animations 
-faire les sons
-
-- **Audio (0-20 points)**
-
-  - 0-5 points: Pas assez - Aucune tentative ou implémentation incorrecte de l'audio.
-
-  - 6-10 points: Suffisant - Audio basique mais fonctionnel.
-
-  - 11-15 points: Bon - Bonne qualité audio et intégration dans le jeu.
-
-  - 16-20 points: Excellent - Audio parfaitement implémenté avec des fonctionnalités avancées comme des effets sonores contextuels.
-
----
-
-
 
 ### Projet 2: Plateforme 2D simple (Unity ou moteur de jeu créé dans le projet 1)
 
-
-
 #### Critères d'évaluation:
 
-
+POUR LE NIVEAU FAIRE ABSOLUMENT UNE "CAMERA QUI BOUGE AVEC LE JOUEUR"
 
 - **Personnage (0-20 points)**
 

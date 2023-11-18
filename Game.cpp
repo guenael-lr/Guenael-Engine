@@ -4,7 +4,10 @@ C_Game::C_Game() {
 	isRunning = false;
 	player_isJumping = false;
 	player_isOnGround = false;
-
+	bufferWin.loadFromFile("Assets/Sounds/win.mp3");
+	soundWin.setBuffer(bufferWin);
+	bufferDeath.loadFromFile("Assets/Sounds/death.mp3");
+	soundDeath.setBuffer(bufferDeath);
 	//load the font and the text
 	if (!font.loadFromFile("Assets/Fonts/arial.ttf"))
 		std::cout << "pas youpi" << std::endl;;
@@ -51,6 +54,7 @@ void C_Game::run() {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 			player.setVelocity(sf::Vector2f(-10.0f, player.getVelocity().y));
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && player_isOnGround) {
+			player.playJumpSound();
 			player_isJumping = true;
 			player_isOnGround = false;
 			player.setVelocity(sf::Vector2f(player.getVelocity().x, -15.0f));
@@ -88,6 +92,7 @@ void C_Game::getObjects(std::vector<C_Object> *list_objects) {
 		if (type == 1) {
 			++totalCollectibles;
 			list_collection.push_back((*list_objects)[i]);
+
 		}
 		else if (type == 2)
 			list_platform.push_back((*list_objects)[i]);
@@ -104,8 +109,8 @@ void C_Game::checkCollision() {
 	for (int i = 0; i < list_collection.size(); i++) {
 		if (player.getRect().getGlobalBounds().intersects(list_collection[i].getRect().getGlobalBounds())) {
 			++collectibles;
-			//delete the collectible from the list
-			list_collection.erase(list_collection.begin() + i);
+			list_collection[i].playActionSound();
+			list_collection[i].move(sf::Vector2f(10000.f, 10000.f));
 		}
 	}
 	for (int i = 0; i < list_platform.size(); i++) {
@@ -130,6 +135,7 @@ void C_Game::checkCollision() {
 	for (int i = 0; i < list_flags.size(); i++) {
 		if (player.getRect().getGlobalBounds().intersects(list_flags[i].getRect().getGlobalBounds())) {
 			if (collectibles == totalCollectibles) {
+				soundWin.play();
 				this->restart();
 				gameWindow.close();
 			}
@@ -155,6 +161,7 @@ void C_Game::applyPhysics() {
 	player.translate(player.getVelocity());
 
 	if (player.getPosition().y > 3000) {
+		soundDeath.play();
 		this->restart();
 		gameWindow.close();
 	}

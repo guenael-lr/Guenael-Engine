@@ -1,19 +1,25 @@
 #pragma once
 #include "utils.hpp"
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+
 
 class C_Object {
 private:
 	int id;
+	int type;
 	std::string name;
 	std::string pathTexture;
-	int type;
+	sf::Sound jumpSound;
+	sf::SoundBuffer bufferJump;
+	sf::Sound actionSound;
+	sf::SoundBuffer bufferAction;
+	std::string pathSoundJump;
+	std::string pathSoundAction;
 	sf::RectangleShape rect;
 	sf::Texture texture;
 	sf::Sprite sprite;
 	sf::Vector2f size;
-	std::vector<C_Object> childs;
-	C_Object* parent; //its position depends from its parent
 	sf::Vector2f position;
 	sf::Vector2f rotation;
 	sf::Vector2f velocity;
@@ -41,13 +47,16 @@ public:
 	std::string getPathTexture();
 	int getType();
 	sf::RectangleShape getRect();
-	std::vector<C_Object> getChilds();
-	C_Object* getParent();
 	sf::Vector2f getPosition();
 	sf::Vector2f getVelocity();
 	sf::Vector2f getFriction();
 	sf::Vector2f getSize();
 	sf::Vector2f getRotation();
 	float getGravity();
-	
+	void setJumpSound(std::string path);
+	void setActionSound(std::string path);
+	std::string getJumpSoundPath();
+	std::string getActionSoundPath();
+	void playJumpSound();
+	void playActionSound();
 };
