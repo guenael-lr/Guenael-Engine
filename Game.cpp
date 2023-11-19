@@ -144,9 +144,12 @@ void C_Game::checkCollision() {
 }
 
 void C_Game::applyPhysics() {	
-	player.setVelocity(sf::Vector2f(player.getVelocity().x * player.getFriction().x, (player.getVelocity().y + player.getGravity())*player.getFriction().y));
-	if(player.getVelocity().y > 0)
+	if (player.getVelocity().y >= 0) {
+		player.setVelocity(sf::Vector2f(player.getVelocity().x * player.getFriction().x, (player.getVelocity().y + player.getGravity()) * player.getFriction().y));
 		player_isJumping = false;
+	}
+	else
+		player.setVelocity(sf::Vector2f(player.getVelocity().x * player.getFriction().x * 1.2, (player.getVelocity().y + player.getGravity()) * player.getFriction().y));
 	this->checkCollision();
 	
 	for (int i = 0; i < list_collection.size(); i++) {
