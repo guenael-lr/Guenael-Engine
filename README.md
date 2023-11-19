@@ -1,15 +1,15 @@
-### Game Engine and 2D Platformer
+# Game Engine and 2D Platformer
 
 ## The Game engine 
 
-# Add an object
+### Add an object
 
 To add an object : click on the button of the object you want to add and then click on the scene where you want to add it.
 (add a gif)
 You cant place the object in an other place than the scene.
 (add a gif)
 
-# Set up the object & Move the object in the scene
+### Set up the object & Move the object in the scene
 
 To set up the object : click on its name in the hierarchy panel to select it.
 A green border will appear around the object to show that it is selected.
@@ -24,13 +24,13 @@ you can also rezise it by dragging the little squares on the border of the objec
 (add a gif)
 
 
-# Play the game
+### Play the game
 
 Once the scene is set up, you can play the game by clicking on the play button.
 The controls are : 
-	- Arrows to move
-	- Arrow up to jump
-	- Shift to dash
+- Arrows to move
+- Arrow up to jump
+- Shift to dash
 
 To finish the game you must have all the cookies in your inventory.
 If you fall into the void you'll die by the way.
@@ -38,7 +38,7 @@ Otherwise the finish flag will not end the game.
 
 ## The 2D Platformer
 
-# Play the game
+### Play the game
 The controls are : 
 	- Arrows to move
 	- Arrow up to jump
