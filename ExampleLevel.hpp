@@ -13,6 +13,7 @@ private:
 	std::vector<C_Object> list_platform;
 	std::vector<C_Object> list_collection;
 	std::vector<C_Object> list_flags;
+	std::vector<C_Object> list_spikes;
 
 	bool player_isJumping = false;
 	bool player_isOnGround = false;

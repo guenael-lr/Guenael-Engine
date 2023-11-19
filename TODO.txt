@@ -1,5 +1,9 @@
 
 faire les animations 
+faire la carte dans un txt
+faire tourner le cookie 
+faire l'object pics
+faire la video
 
 ### Projet 2: Plateforme 2D simple (Unity ou moteur de jeu créé dans le projet 1)
 
@@ -9,26 +13,10 @@ POUR LE NIVEAU FAIRE ABSOLUMENT UNE "CAMERA QUI BOUGE AVEC LE JOUEUR"
 
 - **Personnage (0-20 points)**
 
-  - 0-5 points: Pas assez - Personnage basique sans animations ou fonctionnalités.
-
   - 6-10 points: Suffisant - Personnage avec animations de base (marche, arrêt).
 
   - 11-15 points: Bon - Personnage avec plusieurs animations et interactions possibles.
 
   - 16-20 points: Excellent - Personnage parfaitement réalisé avec des animations fluides et des interactions complexes.
 
-
-- **Carte (0-20 points)**
-
-  - 0-5 points: Pas assez - Carte très basique sans obstacles ou éléments interactifs.
-
-  - 6-10 points: Suffisant - Carte avec quelques obstacles et éléments interactifs.
-
-  - 11-15 points: Bon - Carte bien conçue avec divers obstacles et niveaux.
-
-  - 16-20 points: Excellent - Carte parfaitement réalisée avec une grande variété d'éléments interactifs et de défis.
-
-
-
----
 
