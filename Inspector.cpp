@@ -14,7 +14,7 @@ C_Inspector::C_Inspector() {
 	Title.setFont(font); 
 	Title.setString("Inspector");
 	Title.setCharacterSize(24);
-	Title.setFillColor(sf::Color::White);
+	Title.setFillColor(sf::Color::Black);
 	Title.setPosition(sf::Vector2f(rect.getPosition().x + rect.getSize().x/2 - Title.getGlobalBounds().width/2, rect.getPosition().y + 10));
 }
 
@@ -51,19 +51,19 @@ void C_Inspector::Inspect(std::vector<C_Object> list_object, int id) {
 	//draw in the rect the name of the object obj
 
 	List_Text.push_back(sf::Text());
-	setText(List_Text[0], font, "Name : ", 24, sf::Color::White, sf::Vector2f(rect.getPosition().x + 10, rect.getPosition().y + 50));
+	setText(List_Text[0], font, "Name : ", 24, sf::Color::Black, sf::Vector2f(rect.getPosition().x + 10, rect.getPosition().y + 50));
 
 	List_Value.push_back(sf::Text());
 	setText(List_Value[0], font, obj->getName(), 24, sf::Color::White, sf::Vector2f(List_Text[0].getPosition().x + List_Text[0].getGlobalBounds().width, List_Text[0].getPosition().y));
 
 	List_Text.push_back(sf::Text());
-	setText(List_Text[1], font, "Type : ", 24, sf::Color::White, sf::Vector2f(rect.getPosition().x + 10, List_Text[0].getPosition().y + 30));
+	setText(List_Text[1], font, "Type : ", 24, sf::Color::Black, sf::Vector2f(rect.getPosition().x + 10, List_Text[0].getPosition().y + 30));
 
 	List_Value.push_back(sf::Text());
 	setText(List_Value[1], font, std::to_string(obj->getType()), 24, sf::Color::White, sf::Vector2f(List_Text[1].getPosition().x + List_Text[1].getGlobalBounds().width, List_Text[1].getPosition().y));
 
 	List_Text.push_back(sf::Text());
-	setText(List_Text[2], font, "Position : ", 24, sf::Color::White, sf::Vector2f(rect.getPosition().x + 10, List_Text[1].getPosition().y + 30));
+	setText(List_Text[2], font, "Position : ", 24, sf::Color::Black, sf::Vector2f(rect.getPosition().x + 10, List_Text[1].getPosition().y + 30));
 
 	List_Value.push_back(sf::Text());
 	setText(List_Value[2], font, precision2(std::to_string(obj->getPosition().x)), 24, sf::Color::White, sf::Vector2f(List_Text[2].getPosition().x + List_Text[2].getGlobalBounds().width, List_Text[2].getPosition().y));
@@ -72,7 +72,7 @@ void C_Inspector::Inspect(std::vector<C_Object> list_object, int id) {
 	setText(List_Value[3], font, precision2(std::to_string(obj->getPosition().y)), 24, sf::Color::White, sf::Vector2f(List_Value[2].getPosition().x + List_Value[2].getGlobalBounds().width + 10, List_Value[2].getPosition().y));
 
 	List_Text.push_back(sf::Text());
-	setText(List_Text[3], font, "Size : ", 24, sf::Color::White, sf::Vector2f(rect.getPosition().x + 10, List_Text[2].getPosition().y + 30));
+	setText(List_Text[3], font, "Size : ", 24, sf::Color::Black, sf::Vector2f(rect.getPosition().x + 10, List_Text[2].getPosition().y + 30));
 
 	List_Value.push_back(sf::Text());
 	setText(List_Value[4], font, precision2(std::to_string(obj->getSize().x)), 24, sf::Color::White, sf::Vector2f(List_Text[3].getPosition().x + List_Text[3].getGlobalBounds().width, List_Text[3].getPosition().y));
@@ -81,13 +81,13 @@ void C_Inspector::Inspect(std::vector<C_Object> list_object, int id) {
 	setText(List_Value[5], font, precision2(std::to_string(obj->getSize().y)), 24, sf::Color::White, sf::Vector2f(List_Value[4].getPosition().x + List_Value[4].getGlobalBounds().width + 10, List_Value[4].getPosition().y));
 
 	List_Text.push_back(sf::Text());
-	setText(List_Text[4], font, "Rotation : ", 24, sf::Color::White, sf::Vector2f(rect.getPosition().x + 10, List_Text[3].getPosition().y + 30));
+	setText(List_Text[4], font, "Rotation : ", 24, sf::Color::Black, sf::Vector2f(rect.getPosition().x + 10, List_Text[3].getPosition().y + 30));
 
 	List_Value.push_back(sf::Text());
 	setText(List_Value[6], font, precision2(std::to_string(obj->getRotation().x)), 24, sf::Color::White, sf::Vector2f(List_Text[4].getPosition().x + List_Text[4].getGlobalBounds().width, List_Text[4].getPosition().y));
 
 	List_Text.push_back(sf::Text());
-	setText(List_Text[5], font, "Velocity : ", 24, sf::Color::White, sf::Vector2f(rect.getPosition().x + 10, List_Text[4].getPosition().y + 30));
+	setText(List_Text[5], font, "Velocity : ", 24, sf::Color::Black, sf::Vector2f(rect.getPosition().x + 10, List_Text[4].getPosition().y + 30));
 
 	List_Value.push_back(sf::Text());
 	setText(List_Value[7], font, precision2(std::to_string(obj->getVelocity().x)), 24, sf::Color::White, sf::Vector2f(List_Text[5].getPosition().x + List_Text[5].getGlobalBounds().width, List_Text[5].getPosition().y));
@@ -96,7 +96,7 @@ void C_Inspector::Inspect(std::vector<C_Object> list_object, int id) {
 	setText(List_Value[8], font, precision2(std::to_string(obj->getVelocity().y)), 24, sf::Color::White, sf::Vector2f(List_Value[7].getPosition().x + List_Value[7].getGlobalBounds().width + 10, List_Value[7].getPosition().y));
 
 	List_Text.push_back(sf::Text());
-	setText(List_Text[6], font, "Friction : ", 24, sf::Color::White, sf::Vector2f(rect.getPosition().x + 10, List_Text[5].getPosition().y + 30));
+	setText(List_Text[6], font, "Friction : ", 24, sf::Color::Black, sf::Vector2f(rect.getPosition().x + 10, List_Text[5].getPosition().y + 30));
 
 	List_Value.push_back(sf::Text());
 	setText(List_Value[9], font, precision2(std::to_string(obj->getFriction().x)), 24, sf::Color::White, sf::Vector2f(List_Text[6].getPosition().x + List_Text[6].getGlobalBounds().width, List_Text[6].getPosition().y));
@@ -105,25 +105,25 @@ void C_Inspector::Inspect(std::vector<C_Object> list_object, int id) {
 	setText(List_Value[10], font, precision2(std::to_string(obj->getFriction().y)), 24, sf::Color::White, sf::Vector2f(List_Value[9].getPosition().x + List_Value[9].getGlobalBounds().width + 10, List_Value[9].getPosition().y));
 
 	List_Text.push_back(sf::Text());
-	setText(List_Text[7], font, "Gravity : ", 24, sf::Color::White, sf::Vector2f(rect.getPosition().x + 10, List_Text[6].getPosition().y + 30));
+	setText(List_Text[7], font, "Gravity : ", 24, sf::Color::Black, sf::Vector2f(rect.getPosition().x + 10, List_Text[6].getPosition().y + 30));
 
 	List_Value.push_back(sf::Text());
 	setText(List_Value[11], font, precision2(std::to_string(obj->getGravity())), 24, sf::Color::White, sf::Vector2f(List_Text[7].getPosition().x + List_Text[7].getGlobalBounds().width, List_Text[7].getPosition().y));
 
 	List_Text.push_back(sf::Text());
-	setText(List_Text[8], font, "Texture Path : ", 24, sf::Color::White, sf::Vector2f(rect.getPosition().x + 10, List_Text[7].getPosition().y + 30));
+	setText(List_Text[8], font, "Texture Path : ", 24, sf::Color::Black, sf::Vector2f(rect.getPosition().x + 10, List_Text[7].getPosition().y + 30));
 	
 	List_Value.push_back(sf::Text());
 	setText(List_Value[12], font, obj->getPathTexture(), 24, sf::Color::White, sf::Vector2f(List_Text[8].getPosition().x + List_Text[8].getGlobalBounds().width, List_Text[8].getPosition().y));
 
 	List_Text.push_back(sf::Text());
-	setText(List_Text[9], font, "Sound Jump Path : ", 24, sf::Color::White, sf::Vector2f(rect.getPosition().x + 10, List_Text[8].getPosition().y + 30));
+	setText(List_Text[9], font, "Sound Jump Path : ", 24, sf::Color::Black, sf::Vector2f(rect.getPosition().x + 10, List_Text[8].getPosition().y + 30));
 
 	List_Value.push_back(sf::Text());
 	setText(List_Value[13], font, obj->getJumpSoundPath(), 24, sf::Color::White, sf::Vector2f(rect.getPosition().x + 10, List_Text[9].getPosition().y + 30));
 
 	List_Text.push_back(sf::Text());
-	setText(List_Text[10], font, "Sound Action Path : ", 24, sf::Color::White, sf::Vector2f(rect.getPosition().x + 10, List_Value[13].getPosition().y + 30));
+	setText(List_Text[10], font, "Sound Action Path : ", 24, sf::Color::Black, sf::Vector2f(rect.getPosition().x + 10, List_Value[13].getPosition().y + 30));
 
 	List_Value.push_back(sf::Text());
 	setText(List_Value[14], font, obj->getActionSoundPath(), 24, sf::Color::White, sf::Vector2f(rect.getPosition().x + 10, List_Text[10].getPosition().y + 30));

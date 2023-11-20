@@ -19,7 +19,7 @@ C_Project::C_Project() {
 	Title.setFont(font);
 	Title.setString("Project");
 	Title.setCharacterSize(24);
-	Title.setFillColor(sf::Color::White);
+	Title.setFillColor(sf::Color::Black);
 	Title.setPosition(sf::Vector2f(rect.getPosition().x + rect.getSize().x / 2 - Title.getGlobalBounds().width / 2, rect.getPosition().y + 10));
 	
 	//draw List_Button in the rect 

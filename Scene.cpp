@@ -24,13 +24,13 @@ C_Scene::C_Scene() {
 	Play.setFont(font);
 	Play.setString("Play");
 	Play.setCharacterSize(24);
-	Play.setFillColor(sf::Color::Black);
+	Play.setFillColor(sf::Color::White);
 	Play.setPosition(sf::Vector2f(rect.getPosition().x + rect.getSize().x - Play.getGlobalBounds().width - 20.f, rect.getPosition().y + 10.f));
 
 	ExampleLevel.setFont(font);
 	ExampleLevel.setString("Example of Level");
 	ExampleLevel.setCharacterSize(24);
-	ExampleLevel.setFillColor(sf::Color::Black);
+	ExampleLevel.setFillColor(sf::Color::White);
 	ExampleLevel.setPosition(sf::Vector2f(rect.getPosition().x + rect.getSize().x / 2 - ExampleLevel.getGlobalBounds().width / 2, rect.getPosition().y + rect.getSize().y - ExampleLevel.getGlobalBounds().height - 10.f));
 
 
