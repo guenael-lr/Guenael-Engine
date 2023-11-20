@@ -24,6 +24,9 @@ You can delete an item by pressing the `delete` key on your keyboard when its se
 In the inspector : you can change the name of the object, its position, its rotation and many other things.
 Click on the element to change it (the white text).
 
+Every item has a jump and action sound, otherwise only the player use the jump one and only the collectibles use the action one.
+(since you can't script anything I hard-coded them)
+
 You can use the Assets that I have put in the Folder Assets to test the sound or the textures.
 
 ### Play the game
